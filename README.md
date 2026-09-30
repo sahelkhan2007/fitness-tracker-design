@@ -24,26 +24,24 @@ fitness tracker psuedocode and flo chart and IPO chart
 
 Module Main()
 
-    Module Main()
-
-    DECLARE Real total_income = 0
-    DECLARE Real total_expenses = 0
-    DECLARE Real net_balance = 0
+    DECLARE Integer total_cardio = 0
+    DECLARE Integer total_strength = 0
+    DECLARE Integer total_active = 0
     DECLARE Integer main_choice = 0
     DECLARE Integer sub_choice = 0
-    DECLARE Real amount = 0
-    DECLARE String category_name = ""
+    DECLARE Integer duration = 0
+    DECLARE String activity_name = ""
 
     DISPLAY "=========================================="
-    DISPLAY "         PERSONAL BUDGET TRACKER"
+    DISPLAY "         PERSONAL FITNESS TRACKER"
     DISPLAY "=========================================="
 
     WHILE main_choice != 4
 
         DISPLAY "--- MAIN MENU ---"
-        DISPLAY "1. Log Income"
-        DISPLAY "2. Log Expense"
-        DISPLAY "3. View Financial Summary"
+        DISPLAY "1. Log Cardio"
+        DISPLAY "2. Log Strength"
+        DISPLAY "3. View Activity Summary"
         DISPLAY "4. Exit"
         DISPLAY "Enter your choice (1-4):"
         INPUT main_choice
@@ -56,11 +54,11 @@ Module Main()
 
         IF main_choice == 1 THEN
 
-            DISPLAY "--- INCOME MENU ---"
-            DISPLAY "1. Design"
-            DISPLAY "2. Coding"
-            DISPLAY "3. User Documentation"
-            DISPLAY "Enter income category:"
+            DISPLAY "--- CARDIO MENU ---"
+            DISPLAY "1. Running"
+            DISPLAY "2. Walking"
+            DISPLAY "3. Cycling"
+            DISPLAY "Enter cardio activity:"
             INPUT sub_choice
 
             WHILE sub_choice < 1 OR sub_choice > 3
@@ -69,33 +67,33 @@ Module Main()
             END WHILE
 
             IF sub_choice == 1 THEN
-                SET category_name = "Design"
+                SET activity_name = "Running"
             ELSE IF sub_choice == 2 THEN
-                SET category_name = "Coding"
+                SET activity_name = "Walking"
             ELSE
-                SET category_name = "User Documentation"
+                SET activity_name = "Cycling"
             END IF
 
-            DISPLAY "Enter income amount ($):"
-            INPUT amount
+            DISPLAY "Enter workout duration in minutes:"
+            INPUT duration
 
-            WHILE amount < 0
-                DISPLAY "Invalid. Please enter amount >= 0:"
-                INPUT amount
+            WHILE duration < 0
+                DISPLAY "Invalid. Please enter duration >= 0:"
+                INPUT duration
             END WHILE
 
-            SET total_income = total_income + amount
+            SET total_cardio = total_cardio + duration
 
-            DISPLAY "Successfully added $ ", amount, " for ", category_name, "."
+            DISPLAY "Successfully added ", duration, " minutes for ", activity_name, "."
 
 
         ELSE IF main_choice == 2 THEN
 
-            DISPLAY "--- EXPENSE MENU ---"
-            DISPLAY "1. Software"
-            DISPLAY "2. Equipment"
-            DISPLAY "3. Workspace"
-            DISPLAY "Enter expense category:"
+            DISPLAY "--- STRENGTH MENU ---"
+            DISPLAY "1. Upper Body"
+            DISPLAY "2. Lower Body"
+            DISPLAY "3. Full Body"
+            DISPLAY "Enter strength activity:"
             INPUT sub_choice
 
             WHILE sub_choice < 1 OR sub_choice > 3
@@ -104,43 +102,41 @@ Module Main()
             END WHILE
 
             IF sub_choice == 1 THEN
-                SET category_name = "Software"
+                SET activity_name = "Upper Body"
             ELSE IF sub_choice == 2 THEN
-                SET category_name = "Equipment"
+                SET activity_name = "Lower Body"
             ELSE
-                SET category_name = "Workspace"
+                SET activity_name = "Full Body"
             END IF
 
-            DISPLAY "Enter expense amount ($):"
-            INPUT amount
+            DISPLAY "Enter workout duration in minutes:"
+            INPUT duration
 
-            WHILE amount < 0
-                DISPLAY "Invalid. Please enter amount >= 0:"
-                INPUT amount
+            WHILE duration < 0
+                DISPLAY "Invalid. Please enter duration >= 0:"
+                INPUT duration
             END WHILE
 
-            SET total_expenses = total_expenses + amount
+            SET total_strength = total_strength + duration
 
-            DISPLAY "Successfully added $ ", amount, " for ", category_name, "."
+            DISPLAY "Successfully added ", duration, " minutes for ", activity_name, "."
 
 
         ELSE IF main_choice == 3 THEN
 
-            SET net_balance = total_income - total_expenses
+            SET total_active = total_cardio + total_strength
 
             DISPLAY "=========================================="
-            DISPLAY "          FINANCIAL SUMMARY"
+            DISPLAY "          ACTIVITY SUMMARY"
             DISPLAY "=========================================="
-            DISPLAY "Total Income:   $", total_income
-            DISPLAY "Total Expenses: $", total_expenses
-            DISPLAY "Net Balance:    $", net_balance
+            DISPLAY "Total Cardio Minutes:   ", total_cardio
+            DISPLAY "Total Strength Minutes: ", total_strength
+            DISPLAY "Total Active Minutes:   ", total_active
 
-            IF net_balance > 0 THEN
-                DISPLAY "Status: You are profitable this month!"
-            ELSE IF net_balance < 0 THEN
-                DISPLAY "Status: You had a loss this month!"
+            IF total_active >= 120 THEN
+                DISPLAY "Status: You reached your weekly goal!"
             ELSE
-                DISPLAY "Status: You broke even this month!"
+                DISPLAY "Status: You need ", 120 - total_active, " more minutes to reach your weekly goal."
             END IF
 
             DISPLAY "=========================================="
@@ -148,13 +144,11 @@ Module Main()
 
         ELSE IF main_choice == 4 THEN
 
-            DISPLAY "Thank you for using Personal Budget Tracker. Goodbye!"
+            DISPLAY "Thank you for using Campus Fitness Tracker. Stay Active!"
             BREAK
 
         END IF
 
     END WHILE
-
-End Module
 
 End Module
